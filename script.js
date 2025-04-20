@@ -77,11 +77,21 @@
       let isDragging = false;
       let offset = { x: 0, y: 0 };
     
-      el.addEventListener('mousedown', (e) => {
+      function getEventClientCoords(evt) {
+        if (evt.touches && evt.touches.length > 0) {
+          return { x: evt.touches[0].clientX, y: evt.touches[0].clientY };
+        } else {
+          return { x: evt.clientX, y: evt.clientY };
+        }
+      }
+    
+      const startDrag = (e) => {
         e.preventDefault();
         e.stopPropagation();
         isDragging = true;
-        const pt = getMousePosition(e);
+        const coords = getEventClientCoords(e);
+        const pt = getMousePositionFromCoords(coords);
+    
         if (el.hasAttribute('x')) {
           offset.x = pt.x - parseFloat(el.getAttribute('x'));
           offset.y = pt.y - parseFloat(el.getAttribute('y'));
@@ -89,11 +99,14 @@
           offset.x = pt.x - parseFloat(el.getAttribute('cx'));
           offset.y = pt.y - parseFloat(el.getAttribute('cy'));
         }
-      });
+      };
     
-      document.addEventListener('mousemove', (e) => {
+      const doDrag = (e) => {
         if (!isDragging) return;
-        const pt = getMousePosition(e);
+        e.preventDefault();
+        const coords = getEventClientCoords(e);
+        const pt = getMousePositionFromCoords(coords);
+    
         if (el.hasAttribute('x')) {
           el.setAttribute('x', pt.x - offset.x);
           el.setAttribute('y', pt.y - offset.y);
@@ -101,12 +114,31 @@
           el.setAttribute('cx', pt.x - offset.x);
           el.setAttribute('cy', pt.y - offset.y);
         }
-      });
+      };
     
-      document.addEventListener('mouseup', () => {
+      const endDrag = () => {
         isDragging = false;
-      });
+      };
+    
+      // 🖱 Mouse events
+      el.addEventListener('mousedown', startDrag);
+      document.addEventListener('mousemove', doDrag);
+      document.addEventListener('mouseup', endDrag);
+    
+      // 📱 Touch events
+      el.addEventListener('touchstart', startDrag, { passive: false });
+      document.addEventListener('touchmove', doDrag, { passive: false });
+      document.addEventListener('touchend', endDrag);
     }
+    
+    // 👇 Modified helper function for touch support:
+    function getMousePositionFromCoords({ x, y }) {
+      const pt = svg.createSVGPoint();
+      pt.x = x;
+      pt.y = y;
+      return pt.matrixTransform(svg.getScreenCTM().inverse());
+    }
+    
     
     // ==== GET MOUSE POSITION RELATIVE TO SVG ====
     function getMousePosition(evt) {
