@@ -150,11 +150,24 @@
     
     // ==== MAKE ELEMENTS INTERACTIVE (EDITABLE) ====
     function makeInteractive(el) {
-      el.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevents popup from closing if inside popup
-        showPopup(el, e.clientX, e.clientY);
-      });
+      const show = (e) => {
+        e.stopPropagation();
+        let x = e.clientX;
+        let y = e.clientY;
+    
+        // Handle touch input
+        if (e.touches && e.touches.length > 0) {
+          x = e.touches[0].clientX;
+          y = e.touches[0].clientY;
+        }
+    
+        showPopup(el, x, y);
+      };
+    
+      el.addEventListener('click', show);
+      el.addEventListener('touchstart', show);
     }
+    
     
     const rangeInputLabel = document.getElementById('rangeInputLabel')
     const rangeInputLabelLength = document.getElementById('rangeInputLabelLength')
