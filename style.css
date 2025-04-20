@@ -1,0 +1,202 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    background-color: #fff8f0;
+    padding: 20px;
+    overflow-x: hidden;
+    transform: scale(1);
+  transform-origin: center;
+  }
+  
+  h1 {
+    color: #d63384;
+  }
+  
+  .customizer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #egg-container {
+    margin: 20px 0;
+  }
+  
+  .controls {
+    margin-top: 20px;
+  }
+
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  sub{
+    font-size: 10px;
+    color: #d63384;
+    font-weight: 600;
+  }
+
+  .color-buttons, .sticker-buttons{
+    display: grid;
+    grid-template-columns: 130px 130px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  .color-buttons button {
+    margin: 5px;
+    padding: 10px 20px;
+    height: 50px;
+    width: 120px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .color-buttons button:hover {
+    transform: scale(1.1);
+  }
+  .pattern-buttons button,
+  .sticker-buttons button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    height: 50px;
+    width: 120px;
+  }
+  
+  .pattern-buttons button:hover,
+  .sticker-buttons button:hover {
+    transform: scale(1.1);
+  }
+
+  
+  #edit-popup {
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: none;
+    z-index: 100;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .egg-color-picker {
+    margin-top: 20px;
+  }
+  
+  #egg-color {
+    width: 40px;
+    height: 30px;
+  }
+  
+  #remove-element {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  #remove-element:hover {
+    background-color: darkred;
+  }
+  
+  #clear-all {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all .6s ease;
+    border-radius: 10px;
+  }
+  
+  #clear-all:hover {
+    background-color: #f44336;
+    box-shadow: 5px 10px 20px #f44336;
+    transform: translateY(-10);
+  }
+  
+  @media (max-width: 768px) {
+    #egg-container {
+      width: 150px;
+      height: 225px;
+    }
+  
+    #egg {
+      width: 100%;
+      height: auto;
+    }
+  
+    #edit-popup {
+      width: 150px;
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    /* Adjust the buttons and other UI elements */
+    .color-buttons button, .pattern-buttons button, .sticker-buttons button {
+      font-size: 17px;
+      padding: 8px;
+    }
+  
+    /* Adjust slider inputs */
+    #rotate-slider, #edit-size {
+      width: 100%;
+    }
+
+    body{
+      zoom: 120%;
+      overflow-x: hidden;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #egg-container {
+      width: 120px;
+      height: 180px;
+    }
+  
+    #edit-popup {
+      width: 120px;
+      font-size: 12px;
+    }
+  
+    .color-buttons button, .pattern-buttons button, .sticker-buttons button {
+      font-size: 30px;
+      padding: 6px;
+    }
+    
+    body{
+      zoom: 120%;
+      overflow-x: hidden;
+    }
+  }
+
+.save-btn{
+  height: 50px;
+  width: 150px;
+  letter-spacing: .5px;
+  border: none;
+  color: #fff;
+  background: #d63384;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  transform: translateY(-10px);
+}

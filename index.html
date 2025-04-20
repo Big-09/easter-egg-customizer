@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Easter Egg Customizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <h1>Easter Egg Customizer 🐣</h1><sub>BY JEWEL AGYEI</sub>
+  <div class="customizer">
+    <div class="egg-container" id="egg-container">
+      <!-- The SVG egg will go here -->
+      <svg id="egg" viewBox="0 0 200 300" width="200" height="300">
+        <!-- Define clipPath -->
+        <defs>
+          <clipPath id="egg-clip">
+            <ellipse cx="100" cy="150" rx="80" ry="120" />
+          </clipPath>
+        </defs>
+      
+        <!-- Main egg fill -->
+        <ellipse cx="100" cy="150" rx="80" ry="120" fill="#fce4ec"  id="egg-fill"/>
+      
+        <!-- Pattern and stickers, clipped to egg shape -->
+        <g id="pattern-layer" clip-path="url(#egg-clip)"></g>
+        <g id="sticker-layer" clip-path="url(#egg-clip)"></g>
+        
+      </svg><br>
+      <button class="save-btn" onclick="saveAsPNG()">Save To Device</button>
+
+    </div>
+
+
+    <div class="controls">
+      <h2>Egg Background Colors</h2>
+      <div class="color-buttons">
+        <button id="pink" data-color="#fce4ec">Pink</button>
+        <button id="blue" data-color="#e1f5fe">Blue</button>
+        <button id="green" data-color="#f0f4c3">Green</button>
+        <button id="yellow" data-color="#fff9c4">Yellow</button>
+      </div> 
+      <div class="egg-color-picker">
+            <!-- Color Picker for Egg Color -->
+            <label for="egg-color">Choose Egg Color:</label>
+            <input type="color" id="egg-color" value="#fce4ec" />
+        </div>
+          
+      <!-- Patterns Section -->
+<h2>Patterns</h2>
+<div class="pattern-buttons">
+  <button data-pattern="dots">Dots</button>
+  <button data-pattern="stripes">Stripes</button>
+</div>
+
+<!-- Stickers Section -->
+<h2>Stickers</h2>
+<div class="sticker-buttons">
+  <button data-sticker="bunny">🐰</button>
+  <button data-sticker="flower">🌸</button>
+  <button data-sticker="star">⭐</button>
+  <button data-sticker="star">❤️</button>
+</div>
+
+    </div>
+  </div>
+
+
+ <div id="edit-popup" class="hidden">
+  <label for="edit-color">Color:</label>
+  <input type="color" id="edit-color" />
+  <br />
+  <label for="edit-size">Size:</label>
+  <input type="range" id="edit-size" min="5" max="50" />
+  <br />
+  <label id="rangeInputLabel" style="display: none;" >Rotate: <input type="range" id="rotate-slider" min="0" max="360" value="0"></label>
+  <label id="rangeInputLabelLength" style="display: block;" >Length: <input type="range" id="length-slider" min="0" max="500" value="160"></label>
+  <button id="bring-to-front">Bring to Front</button>
+  <button id="send-to-back">Send to Back</button><br>
+  <button id="remove-element">Remove</button>  <!-- Remove Element Button -->
+
+</div>
+
+
+
+
+  
+
+  <script src="./script.js"></script>
+</body>
+</html>
+
+
